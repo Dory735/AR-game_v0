@@ -18,6 +18,7 @@ public class ImageTrackingManager : MonoBehaviour
         set => m_ImageManager = value;
     }
 
+    
     [SerializeField]
     [Tooltip("Reference Image Library")]
     XRReferenceImageLibrary m_ImageLibrary;
@@ -80,6 +81,9 @@ public class ImageTrackingManager : MonoBehaviour
     }
 
     int m_NumberOfTrackedImages;
+
+    //NumberManager active ou désactive la visualisation
+    //des numéros 3D qui apparaissent
     
     NumberManager m_OneNumberManager;
     NumberManager m_TwoNumberManager;
@@ -93,6 +97,7 @@ public class ImageTrackingManager : MonoBehaviour
         s_SecondImageGUID = m_ImageLibrary[1].guid;
         
         m_ImageManager.trackedImagesChanged += ImageManagerOnTrackedImagesChanged;
+        //se déclenche chaque fois qu'une image est ajoutée, mise à jour ou supprimée
     }
 
     void OnDisable()
@@ -103,8 +108,19 @@ public class ImageTrackingManager : MonoBehaviour
     void ImageManagerOnTrackedImagesChanged(ARTrackedImagesChangedEventArgs obj)
     {
         // added, spawn prefab
+        //traite chaque image ajoutée, mise à jour ou supprimée
         foreach(ARTrackedImage image in obj.added)
         {
+            /*
+             
+             Pour chaque image ajoutée, le script instancie le préfabriqué
+            correspondant et stocke une référence à celui-ci. 
+            Pour chaque image mise à jour, le script active la visualisation des numéros en 3D 
+            et met à jour la position et la rotation du préfabriqué. Si une image 
+            n'est plus suivie, le script désactive la visualisation des numéros en 3D. 
+            Enfin, pour chaque image supprimée, le script détruit le préfabriqué 
+            correspondant.
+             */
             if (image.referenceImage.guid == s_FirstImageGUID)
             {
                 m_SpawnedOnePrefab = Instantiate(m_OnePrefab, image.transform.position, image.transform.rotation);
@@ -162,6 +178,15 @@ public class ImageTrackingManager : MonoBehaviour
         }
     }
 
+    /*
+     * 
+     * La méthode NumberOfTrackedImages() est utilisée pour compter 
+     * le nombre d'images suivies à tout moment. 
+     * Elle utilise une boucle foreach pour parcourir 
+     * toutes les images suivies et compter celles qui ont un 
+     * état de suivi actif.
+     
+     */
     public int NumberOfTrackedImages()
     {
         m_NumberOfTrackedImages = 0;

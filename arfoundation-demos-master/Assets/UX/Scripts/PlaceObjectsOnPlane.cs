@@ -72,11 +72,12 @@ public class PlaceObjectsOnPlane : MonoBehaviour
                     {
                         Spawner.Instance.setTurrePosition(hitPose.position);
 
-                        Spawner.Instance.spawnRedPlane();
+                        
 
                         spawnedObject = Instantiate(m_PlacedPrefab, hitPose.position, hitPose.rotation);
 
                         Vector3 patriciaPosition = spawnedObject.transform.position;
+                        
                         shootScript.GetComponent<Shoot>().patriciaIdle = spawnedObject;
                         shootScript.GetComponent<Shoot>().patriciaDance.transform.position += patriciaPosition;
 

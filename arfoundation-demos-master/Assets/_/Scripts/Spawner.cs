@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public static Spawner Instance { get; private set; }
 
-    public GameObject redPlane;
+    
     private Vector3 turretPosition;
 
     private void Awake()
@@ -41,10 +41,7 @@ public class Spawner : MonoBehaviour
 
     }
 
-    public void spawnRedPlane()
-    {
-        spawnPlane(redPlane);
-    }
+    
 
 
 

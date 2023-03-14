@@ -8,7 +8,10 @@ public class Shoot : MonoBehaviour
     public GameObject patriciaIdle;
     public GameObject patriciaFly;
     public GameObject patriciaDance;
-    public AudioSource soundtrack;
+    public AudioSource danceMusic;
+    public AudioSource clickSound;
+    public AudioSource broomSound;
+    public AudioSource backgroundSoundtrack;
 
     // Update is called once per frame
     void Update()
@@ -28,25 +31,54 @@ public class Shoot : MonoBehaviour
 
                     if (hit.transform.tag == "Patricia")
                     {
+                        clickSound.Play();
                         patriciaIdle.SetActive(false);
                         patriciaFly.SetActive(false);
                         patriciaDance.SetActive(true);
-                        
-                        if (soundtrack.isPlaying == false)
+                        patriciaDance.transform.position = patriciaIdle.transform.position;
+
+                        backgroundSoundtrack.Pause();
+                        broomSound.Pause();
+                        if (danceMusic.isPlaying == false)
                         {
-                            soundtrack.Play();
+                            danceMusic.Play();
                         }
                         
                     }
                     if (hit.transform.tag == "Broom")
                     {
+                        clickSound.Play();
                         patriciaIdle.SetActive(false);
                         patriciaDance.SetActive(false);
                         patriciaFly.SetActive(true);
-                        if (soundtrack.isPlaying == true)
+                        if (danceMusic.isPlaying == true)
                         {
-                            soundtrack.Pause();
+                            danceMusic.Pause();
                         }
+                        backgroundSoundtrack.Play();
+                        broomSound.Play();
+
+                    }
+                    if (hit.transform.tag == "DancingPatricia")
+                    {
+                        clickSound.Play();
+                        patriciaDance.SetActive(false);
+                        patriciaIdle.SetActive(true);
+                        if (danceMusic.isPlaying == true)
+                        {
+                            danceMusic.Pause();
+                        }
+                        backgroundSoundtrack.Play();
+                        broomSound.Pause();
+
+                    }
+
+                    if (hit.transform.tag == "FlyingPatricia")
+                    {
+                        clickSound.Play();
+                        broomSound.Pause();
+                        patriciaFly.SetActive(false);
+                        patriciaIdle.SetActive(true);
                     }
 
                     /*turret.GetComponent<TurretAI>().currentTarget = hit.transform.gameObject;
