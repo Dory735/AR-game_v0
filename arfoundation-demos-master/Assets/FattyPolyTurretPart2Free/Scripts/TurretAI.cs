@@ -75,11 +75,11 @@ public class TurretAI : MonoBehaviour {
                 if (animator != null)
                 {
                     animator.SetTrigger("Fire");
-                    ShootTrigger();
+                    //ShootTrigger();
                 }
-                else
-                {
-                    ShootTrigger();
+                else{ 
+                
+                    //ShootTrigger();
                 }
             }
         }
