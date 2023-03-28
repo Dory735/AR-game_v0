@@ -14,7 +14,7 @@ public class Edition : MonoBehaviour
     void Start()
     {
         float x=56;
-        float y=90;
+        float y=60;
         objectMaterials = GetComponent<Renderer>().materials;
         for(int i = 0; i < objectMaterials.Length; i++)
         {
@@ -34,6 +34,7 @@ public class Edition : MonoBehaviour
             //currentButton.transform.GetChild(0).GetComponent<TextMeshPro>().text=objectMaterials[i].ToString();
             currentButton.GetComponent<EditionButton>().material = objectMaterials[i];
             currentButton.transform.GetChild(1).GetComponent<Text>().text = objectMaterials[i].name;
+            currentButton.GetComponent<EditionButton>().index = i;
 
 
 

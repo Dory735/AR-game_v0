@@ -261,6 +261,10 @@ MonoBehaviour:
   V: 0
   B: 0
   material: {fileID: 0}
+  index: 0
+  patriciaInstances:
+  - {fileID: 7539761543075101010, guid: b2b7ace97bd8eb041b689e825ec58853, type: 3}
+  - {fileID: 7539761543075101010, guid: b2b7ace97bd8eb041b689e825ec58853, type: 3}
 --- !u!1 &6571933815199273023
 GameObject:
   m_ObjectHideFlags: 0

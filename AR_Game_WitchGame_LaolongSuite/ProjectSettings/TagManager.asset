@@ -9,6 +9,7 @@ TagManager:
   - Broom
   - DancingPatricia
   - FlyingPatricia
+  - PatriciaMesh
   layers:
   - Default
   - TransparentFX
